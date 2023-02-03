@@ -1,6 +1,5 @@
 # Pokemon Teams
-## Link to live site
-
+## [Link to live site](https://polite-cannoli-2d1058.netlify.app/)
 
 ## Description
 
