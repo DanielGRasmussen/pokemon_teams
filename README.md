@@ -1,9 +1,10 @@
-# sleepoutside
-https://guileless-cendol-4dd464.netlify.app/
+# Pokemon Teams
+## Link to live site
+
 
 ## Description
 
-Use this as a starting point to complete the WDD 330 team activity: the SleepOutside web application. It scaffolds out a simple web app with Vite support to bundle up our assets.
+This is a Pokemon team manager where you can figure out what teams you want and select moves for them.
 
 ## Prerequisites
 
