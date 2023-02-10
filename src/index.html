@@ -4,14 +4,342 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title></title>
-		<link rel="stylesheet" href="/css/style.css" />
-		<script src="/js/main.js" type="module"></script>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/main.js" type="module"></script>
+		<script src="js/dropdown.js" type="module"></script>
 	</head>
 
 	<body>
 		<header id="main-header"></header>
 		<main>
-			<p id="content"></p>
+			<form>
+				<input type="text" name="search" id="search" /><br />
+				<div class="dropdown-container">
+					<label class="dropdown-select" id="types-button"
+						>Select Types</label
+					>
+					<div class="dropdown hidden" id="types">
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-normal"
+								name="type-normal"
+								value="normal"
+							/>
+							<label for="type-normal">Normal</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-fire"
+								name="type-fire"
+								value="fire"
+							/>
+							<label for="type-fire">Fire</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-water"
+								name="type-water"
+								value="water"
+							/>
+							<label for="type-water">Water</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-grass"
+								name="type-grass"
+								value="grass"
+							/>
+							<label for="type-grass">Grass</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-flying"
+								name="type-flying"
+								value="flying"
+							/>
+							<label for="type-flying">Flying</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-fighting"
+								name="type-fighting"
+								value="fighting"
+							/>
+							<label for="type-fighting">Fighting</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-poison"
+								name="type-poison"
+								value="poison"
+							/>
+							<label for="type-poison">Poison</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-electric"
+								name="type-electric"
+								value="electric"
+							/>
+							<label for="type-electric">Electric</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-ground"
+								name="type-ground"
+								value="ground"
+							/>
+							<label for="type-ground">Ground</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-rock"
+								name="type-rock"
+								value="rock"
+							/>
+							<label for="type-rock">Rock</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-psychic"
+								name="type-psychic"
+								value="psychic"
+							/>
+							<label for="type-psychic">Psychic</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-ice"
+								name="type-ice"
+								value="ice"
+							/>
+							<label for="type-ice">Ice</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-bug"
+								name="type-bug"
+								value="bug"
+							/>
+							<label for="type-bug">Bug</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-ghost"
+								name="type-ghost"
+								value="ghost"
+							/>
+							<label for="type-ghost">Ghost</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-steel"
+								name="type-steel"
+								value="steel"
+							/>
+							<label for="type-steel">Steel</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-dragon"
+								name="type-dragon"
+								value="dragon"
+							/>
+							<label for="type-dragon">Dragon</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-dark"
+								name="type-dark"
+								value="dark"
+							/>
+							<label for="type-dark">Dark</label><br />
+						</div>
+						<div class="type">
+							<input
+								type="checkbox"
+								id="type-fairy"
+								name="type-fairy"
+								value="fairy"
+							/>
+							<label for="type-fairy">Fairy</label><br />
+						</div>
+					</div>
+				</div>
+
+				<div class="dropdown-container">
+					<label class="dropdown-select" id="generations-button"
+						>Generations</label
+					>
+					<div class="dropdown hidden" id="generations">
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-1"
+								name="generations"
+								value="1"
+							/>
+							<label for="generation-1">1</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-2"
+								name="generations"
+								value="2"
+							/>
+							<label for="generation-2">2</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-3"
+								name="generations"
+								value="3"
+							/>
+							<label for="generation-3">3</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-4"
+								name="generations"
+								value="4"
+							/>
+							<label for="generation-4">4</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-5"
+								name="generations"
+								value="5"
+							/>
+							<label for="generation-5">5</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-6"
+								name="generations"
+								value="6"
+							/>
+							<label for="generation-6">6</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-7"
+								name="generations"
+								value="7"
+							/>
+							<label for="generation-7">7</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-8"
+								name="generations"
+								value="8"
+							/>
+							<label for="generation-8">8</label><br />
+						</div>
+						<div class="generation">
+							<input
+								type="radio"
+								id="generation-9"
+								name="generations"
+								value="9"
+							/>
+							<label for="generation-9">9</label><br />
+						</div>
+					</div>
+				</div>
+
+				<div class="dropdown-container">
+					<label class="dropdown-select" id="results-button"
+						>Results #</label
+					>
+					<div class="dropdown hidden" id="results">
+						<div class="result">
+							<input
+								type="radio"
+								id="results-10"
+								name="results"
+								value="10"
+							/>
+							<label for="results-10">10</label><br />
+						</div>
+						<div class="result">
+							<input
+								type="radio"
+								id="results-20"
+								name="results"
+								value="20"
+								checked
+							/>
+							<label for="results-20">20</label><br />
+						</div>
+						<div class="result">
+							<input
+								type="radio"
+								id="results-30"
+								name="results"
+								value="30"
+							/>
+							<label for="results-30">30</label><br />
+						</div>
+						<div class="result">
+							<input
+								type="radio"
+								id="results-40"
+								name="results"
+								value="40"
+							/>
+							<label for="results-40">40</label><br />
+						</div>
+						<div class="result">
+							<input
+								type="radio"
+								id="results-50"
+								name="results"
+								value="50"
+							/>
+							<label for="results-50">50</label><br />
+						</div>
+						<div class="result">
+							<input
+								type="radio"
+								id="results-100"
+								name="results"
+								value="100"
+							/>
+							<label for="results-100">100</label><br />
+						</div>
+					</div>
+				</div>
+				<br />
+
+				<input type="submit" value="Search" id="submit" />
+			</form>
+			<div id="content"></div>
 		</main>
 		<footer id="main-footer"></footer>
 	</body>

@@ -11,6 +11,14 @@ export function deleteLocalStorage(key) {
 	localStorage.removeItem(key);
 }
 
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+	const htmlStrings = list.map(templateFn);
+	if (clear) {
+		parentElement.innerHTML = "";
+	}
+	parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
 export function renderWithTemplate(template, parentElement, data, callback) {
 	parentElement.insertAdjacentHTML("afterbegin", template);
 	if (callback) {
@@ -20,8 +28,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 async function loadTemplate(path) {
 	const res = await fetch(path);
-	const template = await res.text();
-	return template;
+	return await res.text();
 }
 
 export async function loadHeaderFooter() {
@@ -63,7 +70,7 @@ export function removeUniquePokemon(list1, list2) {
 	return allPokemon.filter((item) => !uniquePokemon.includes(item));
 }
 
-// Basic search function to find pokemon who's names start with searchterm
+// Basic search function to find Pokemon who's names start with search term
 export function searchPokemonByName(pokemonArray, searchTerm) {
 	let pokemonName;
 	return pokemonArray.filter((pokemon) => {
@@ -73,6 +80,11 @@ export function searchPokemonByName(pokemonArray, searchTerm) {
 			pokemonName = pokemon.name;
 		}
 		const lowerCaseName = pokemonName.toLowerCase();
-		return lowerCaseName.startsWith(searchTerm.toLowerCase());
+		return lowerCaseName.includes(searchTerm.toLowerCase());
 	});
+}
+
+// Gets the ID from the Pokemon URL provided.
+export function getIdFromURL(url) {
+	return url.split("/")[6];
 }

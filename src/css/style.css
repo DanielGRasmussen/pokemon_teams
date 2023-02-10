@@ -54,7 +54,114 @@ header nav a.active:hover {
 	float: right;
 }
 
+/* Search buttons */
+#search {
+	width: 300px;
+	height: 36px;
+	margin: 5px 0 5px 0;
+	font-size: 16pt;
+}
+
+@media only screen and (min-width: 720px) {
+	#search {
+		width: 500px;
+	}
+}
+
+/* Dropdowns */
+.dropdown-container {
+	position: relative;
+	display: inline-block;
+	margin: 10px 0;
+}
+
+.dropdown-select {
+	color: black;
+	padding: 10px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+.dropdown-select:hover {
+	background-color: lightgray;
+}
+
+.dropdown {
+	margin-top: 10px;
+	position: absolute;
+	background-color: white;
+	width: 300px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	text-align: left;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dropdown input,
+.dropdown label {
+	height: 32px;
+	font-size: 16pt;
+	vertical-align: middle;
+}
+
+/* Center the dropdowns */
+#types {
+	margin-left: -4px;
+}
+
+#generations {
+	margin-left: -111px;
+}
+
+#results {
+	margin-left: -214px;
+}
+
+/* Pokemon Cards */
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+
+.pokemon-card {
+	width: 150px;
+	text-align: center;
+	border: 1px solid black;
+	padding: 0 10px;
+	margin: 5px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.pokemon-card img {
+	width: 150px;
+}
+
+/* Submit Button */
+#submit {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#content {
+	width: 100%;
+}
+
+/* Footer */
 footer {
 	border-top: 2px solid black;
 	padding: 1em;
+}
+
+.hidden {
+	display: none;
 }
