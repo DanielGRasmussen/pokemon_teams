@@ -136,6 +136,11 @@ main {
 	vertical-align: top;
 }
 
+.pokemon-card a {
+	text-decoration: none;
+	color: black;
+}
+
 .pokemon-card img {
 	width: 150px;
 }
@@ -152,8 +157,63 @@ main {
 	border-radius: 5px;
 }
 
-#content {
+/* Pokemon Detail */
+#pokemon-detail {
+	width: 70%;
+	text-align: center;
+	padding: 0 10px;
+	margin: 5px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#pokemon-detail img {
+	width: 250px;
+}
+
+/* Types */
+#detail-page #types {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin: 0 0 20px 0;
 	width: 100%;
+}
+
+#detail-page #types span {
+	padding: 5px 10px;
+	background: lightblue;
+	border-radius: 15px;
+	border: 1px solid black;
+	margin: 0 3px;
+}
+
+/* Evolutions */
+#detail-page #evolutions {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	background: black;
+	color: white;
+	width: fit-content;
+	padding: 20px 40px 0 40px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+#detail-page #evolutions img {
+	width: 150px;
+	padding: 30px;
+	border: 1px solid white;
+	border-radius: 100px;
+	margin-right: 10px;
+	background: white;
+}
+
+#detail-page #evolutions a {
+	text-decoration: none;
+	color: white;
 }
 
 /* Footer */

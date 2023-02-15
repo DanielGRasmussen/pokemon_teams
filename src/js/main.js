@@ -7,7 +7,7 @@ import {
 } from "./utils.mjs";
 import PokemonRender from "./PokemonRender.mjs";
 
-loadHeaderFooter();
+loadHeaderFooter("home");
 
 const services = new ExternalServices();
 

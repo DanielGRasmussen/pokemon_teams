@@ -31,7 +31,7 @@ async function loadTemplate(path) {
 	return await res.text();
 }
 
-export async function loadHeaderFooter() {
+export async function loadHeaderFooter(page) {
 	const headerTemplate = await loadTemplate("../partials/header.html");
 	const headerElement = document.querySelector("#main-header");
 	const footerTemplate = await loadTemplate("../partials/footer.html");
@@ -39,6 +39,11 @@ export async function loadHeaderFooter() {
 
 	renderWithTemplate(headerTemplate, headerElement);
 	renderWithTemplate(footerTemplate, footerElement);
+	
+	const link = document.getElementById(page);
+	if (link) {
+		link.classList.add("active")
+	}
 }
 
 // Removes any duplicate pokemon. Doesn't use filter because it has to check name

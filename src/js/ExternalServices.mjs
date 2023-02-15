@@ -12,9 +12,23 @@ export default class ExternalServices {
 		return result.data.results;
 	}
 	
-	async getPokemonByName(name) {
+	async getPokemonByName(name, species) {
 		try {
-			const response = await axios.get(`${baseURL}/pokemon/${name}`);
+			let link = "pokemon";
+			if (species) {
+				link += "-species";
+			}
+			const response = await axios.get(`${baseURL}/${link}/${name}`);
+			return response.data;
+		} catch (error) {
+			console.error(error);
+			return error;
+		}
+	}
+	
+	async getEvolutionChain(id) {
+		try {
+			const response = await axios.get(`${baseURL}/evolution-chain/${id}`);
 			return response.data;
 		} catch (error) {
 			console.error(error);
