@@ -3,7 +3,8 @@ import {
 	loadHeaderFooter,
 	removeUniquePokemon,
 	searchPokemonByName,
-	getIdFromURL
+	getIdFromURL,
+	separateArray
 } from "./utils.mjs";
 import PokemonRender from "./PokemonRender.mjs";
 
@@ -11,13 +12,7 @@ loadHeaderFooter("home");
 
 const services = new ExternalServices();
 
-async function searchPokemon(
-	search = "",
-	types = [],
-	generation = 0,
-	limit = 20,
-	page = 1
-) {
+async function searchPokemon(search = "", types = [], generation = 0) {
 	let pokemon = [];
 
 	// Check if types is set, if so then get those pokemon
@@ -30,9 +25,7 @@ async function searchPokemon(
 
 	if (0 < generation && generation < 10) {
 		const pokemonGeneration = await services.getPokemonByGeneration(
-			generation,
-			limit,
-			page
+			generation
 		);
 		if (types.length > 0) {
 			pokemon = removeUniquePokemon(pokemon, pokemonGeneration);
@@ -46,7 +39,7 @@ async function searchPokemon(
 	// of a pokemon at the end they would have to scroll through 500 pages or
 	// whatever
 	if (!types.length > 0 && !(0 < generation && generation < 10)) {
-		pokemon = await services.getAllPokemon(limit, page, limit, page);
+		pokemon = await services.getAllPokemon();
 	}
 
 	if (search.length > 0) {
@@ -62,6 +55,11 @@ async function searchPokemon(
 	}
 
 	return pokemon;
+}
+
+function pageUpdate(render, pokemonList) {
+	document.getElementById("content").innerHTML = "";
+	render.renderPokemon(pokemonList);
 }
 
 document.querySelector("form").addEventListener("submit", (event) => {
@@ -82,12 +80,39 @@ document.querySelector("form").addEventListener("submit", (event) => {
 			document.querySelectorAll("#results .result input:checked")
 		).map((checkbox) => checkbox.value)[0]
 	);
+	let page = 0;
 
-	searchPokemon(search, types, generations, results, 1).then(
-		(pokemonList) => {
-			const render = new PokemonRender();
-			document.getElementById("content").innerHTML = "";
-			render.renderPokemon(pokemonList);
-		}
-	);
+	searchPokemon(search, types, generations).then((pokemonList) => {
+		const render = new PokemonRender();
+		const allPokemonLists = separateArray(pokemonList, results);
+		console.log(allPokemonLists);
+
+		pageUpdate(render, allPokemonLists[page]);
+
+		const prevButton = document.getElementById("prevPage");
+		const nextButton = document.getElementById("nextPage");
+		nextButton.disabled = false;
+
+		prevButton.addEventListener("click", () => {
+			if (page !== 0) {
+				page--;
+				pageUpdate(render, allPokemonLists[page]);
+				nextButton.disabled = false;
+				if (page === 0) {
+					prevButton.disabled = true;
+				}
+			}
+		});
+
+		nextButton.addEventListener("click", () => {
+			if (page !== allPokemonLists.length - 1) {
+				page++;
+				pageUpdate(render, allPokemonLists[page]);
+				prevButton.disabled = false;
+				if (page === allPokemonLists.length - 1) {
+					nextButton.disabled = true;
+				}
+			}
+		});
+	});
 });

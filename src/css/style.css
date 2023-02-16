@@ -9,7 +9,7 @@ header {
 	overflow: hidden;
 	background-color: #ee0700;
 	padding: 2px 5px;
-	width: 100%;
+	width: calc(100% - 10px);
 }
 
 /* Style the header links */
@@ -22,7 +22,12 @@ header a {
 	font-size: 14pt;
 	line-height: 25px;
 	border-radius: 4px;
-	margin-right: 10px;
+}
+
+@media only screen and (min-width: 400px) {
+	header a {
+		margin-right: 10px;
+	}
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
@@ -56,7 +61,7 @@ header nav a.active:hover {
 }
 
 /* Search buttons */
-#search {
+form #search {
 	width: 300px;
 	height: 36px;
 	margin: 5px 0 5px 0;
@@ -64,26 +69,26 @@ header nav a.active:hover {
 }
 
 @media only screen and (min-width: 720px) {
-	#search {
+	form #search {
 		width: 500px;
 	}
 }
 
 /* Dropdowns */
-.dropdown-container {
+form .dropdown-container {
 	position: relative;
 	display: inline-block;
 	margin: 10px 0;
 }
 
-.dropdown-select {
+form .dropdown-select {
 	color: black;
 	padding: 10px;
 	cursor: pointer;
 	border: 1px solid black;
 }
 
-.dropdown-select:hover {
+form .dropdown-select:hover {
 	background-color: lightgray;
 }
 
@@ -99,23 +104,23 @@ header nav a.active:hover {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 
-.dropdown input,
-.dropdown label {
+form .dropdown input,
+form .dropdown label {
 	height: 32px;
 	font-size: 16pt;
 	vertical-align: middle;
 }
 
 /* Center the dropdowns */
-#types {
+form #types {
 	margin-left: -4px;
 }
 
-#generations {
+form #generations {
 	margin-left: -111px;
 }
 
-#results {
+form #results {
 	margin-left: -214px;
 }
 
@@ -131,7 +136,7 @@ main {
 	width: 100%;
 }
 
-.pokemon-card {
+#content .pokemon-card {
 	width: 250px;
 	text-align: center;
 	border: 1px solid black;
@@ -141,17 +146,17 @@ main {
 	vertical-align: top;
 }
 
-.pokemon-card a {
+#content .pokemon-card a {
 	text-decoration: none;
 	color: black;
 }
 
-.pokemon-card img {
+#content .pokemon-card img {
 	width: 150px;
 }
 
 /* Submit Button */
-#submit {
+form #submit {
 	background-color: #4caf50;
 	border: none;
 	color: white;
@@ -162,14 +167,60 @@ main {
 	border-radius: 5px;
 }
 
+/* Next/Previous page */
+#pageButtons {
+	width: 100%;
+	height: 0; /* To avoid it blocking the search bar */
+	position: absolute;
+}
+
+#pageButtons input {
+	height: 40px;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	background: red;
+	cursor: pointer;
+	width: 80px;
+	position: relative;
+	top: 97px;
+}
+
+#pageButtons #prevPage {
+	margin-right: 120px;
+}
+
+@media only screen and (min-width: 420px) {
+	#prevPage {
+		margin-right: 240px;
+	}
+}
+
+#pageButtons input:disabled {
+	background: grey;
+	cursor: auto;
+}
+
 /* Pokemon Detail */
+#detail-page {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
 #pokemon-detail {
-	width: 70%;
+	width: 100%;
 	text-align: center;
-	padding: 0 10px;
-	margin: 5px;
 	display: inline-block;
 	vertical-align: top;
+}
+
+@media screen and (min-width: 900px) {
+	#pokemon-detail {
+		width: 70%;
+		padding: 0 10px;
+		margin: 5px;
+	}
 }
 
 #pokemon-detail img {
@@ -195,58 +246,58 @@ main {
 }
 
 /* Individual types */
-.normal {
+#detail-page .normal {
 	background: #807918;
 }
-.fire {
+#detail-page .fire {
 	background: #d14904;
 }
-.water {
+#detail-page .water {
 	background: #6576a2;
 }
-.grass {
+#detail-page .grass {
 	background: #657e54;
 }
-.electric {
+#detail-page .electric {
 	background: #726900;
 } /* */
-.ice {
+#detail-page .ice {
 	background: #2b8381;
 }
-.fighting {
+#detail-page .fighting {
 	background: #c03028;
 }
-.poison {
+#detail-page .poison {
 	background: #a040a0;
 }
-.ground {
+#detail-page .ground {
 	background: #9f6d0b;
 }
-.flying {
+#detail-page .flying {
 	background: #8754f9;
 }
-.psychic {
+#detail-page .psychic {
 	background: #e8174f;
 }
-.bug {
+#detail-page .bug {
 	background: #787a44;
 }
-.rock {
+#detail-page .rock {
 	background: #947201;
 }
-.ghost {
+#detail-page .ghost {
 	background: #705898;
 }
-.dark {
+#detail-page .dark {
 	background: #7038f8;
 }
-.dragon {
+#detail-page .dragon {
 	background: #705848;
 }
-.steel {
+#detail-page .steel {
 	background: #74758c;
 }
-.fairy {
+#detail-page .fairy {
 	background: #cc4a51;
 }
 
@@ -255,6 +306,7 @@ main {
 	list-style: none;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap; /* allow items to wrap to a new row or column */
 	background: black;
 	color: white;
 	width: fit-content;
@@ -275,6 +327,15 @@ main {
 #detail-page #evolutions a {
 	text-decoration: none;
 	color: white;
+}
+
+#detail-page #moves {
+	width: 100%;
+	column-count: auto;
+	column-width: 130px;
+	list-style: none;
+	padding: 0;
+	margin: 20px 0;
 }
 
 /* Footer */

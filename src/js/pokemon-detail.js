@@ -4,7 +4,11 @@ import {
 	renderWithTemplate
 } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
-import { evolutionTemplate, typeTemplate } from "./templates.mjs";
+import {
+	evolutionTemplate,
+	movesTemplate,
+	typeTemplate
+} from "./templates.mjs";
 
 loadHeaderFooter("");
 const spriteURL =
@@ -15,6 +19,7 @@ function pokemonDetailTemplate(pokemon, data, chain) {
 	const generation = pokemon.generation.name.split("-")[1].toUpperCase();
 	let flavor_text = "No description available";
 	const types = typeTemplate(data);
+	const moves = movesTemplate(data);
 
 	// Get list of pokemon evolution IDs and Names
 	let evolutions = [
@@ -69,12 +74,14 @@ function pokemonDetailTemplate(pokemon, data, chain) {
 	}
 
 	return `<section id="pokemon-detail">
-                <h3>${name}</h3>
+                <h1>${name}</h1>
                 ${types}
                 <img src="${spriteURL}/${pokemon.id}.png" alt="Image of ${name}">
                 <p>Generation ${generation}</p>
                 <p>${flavor_text}</p>
                 ${evolutionList}
+                <h2>Moves</h2>
+                ${moves}
             </section>`;
 }
 

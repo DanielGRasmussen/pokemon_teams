@@ -33,3 +33,15 @@ export function typeTemplate(data) {
 	list += "</ul>";
 	return list;
 }
+
+export function movesTemplate(data) {
+	const moves = data.moves;
+	let list = "<ul id='moves'>";
+	for (let move of moves) {
+		move = move.move;
+		const name = move.name[0].toUpperCase() + move.name.slice(1);
+		list += `<li>${name}</li>`;
+	}
+	list += "</ul>";
+	return list;
+}

@@ -93,3 +93,16 @@ export function searchPokemonByName(pokemonArray, searchTerm) {
 export function getIdFromURL(url) {
 	return url.split("/")[6];
 }
+
+// Separate  array into segments of x
+export function separateArray(array, chunk) {
+	let i, j, tempArray;
+	let newArray = [];
+	
+	for (i = 0, j = array.length; i < j; i += chunk) {
+		tempArray = array.slice(i, i + chunk);
+		newArray.push(tempArray);
+	}
+	
+	return newArray;
+}
