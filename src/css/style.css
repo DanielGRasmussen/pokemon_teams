@@ -338,6 +338,47 @@ form #submit {
 	margin: 20px 0;
 }
 
+#detail-page #moves li.selected {
+	background: yellow;
+}
+
+/* Team */
+#team {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	width: fit-content;
+	justify-content: center;
+}
+
+#team li {
+	width: fit-content;
+	margin-right: 10px;
+}
+
+#team li img {
+	width: 70px;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 100px;
+}
+
+#manageButtons {
+	width: 100%;
+	text-align: center;
+}
+
+#manageButtons input {
+	width: 80px;
+	height: 40px;
+	background: red;
+	color: white;
+	border: none;
+	margin: 0 10px 10px 0;
+	cursor: pointer;
+}
+
 /* Footer */
 footer {
 	border-top: 2px solid black;
