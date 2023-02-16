@@ -22,6 +22,7 @@ header a {
 	font-size: 14pt;
 	line-height: 25px;
 	border-radius: 4px;
+	margin-right: 10px;
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
@@ -126,6 +127,10 @@ main {
 	text-align: center;
 }
 
+#content {
+	width: 100%;
+}
+
 .pokemon-card {
 	width: 250px;
 	text-align: center;
@@ -183,10 +188,66 @@ main {
 
 #detail-page #types span {
 	padding: 5px 10px;
-	background: lightblue;
 	border-radius: 15px;
 	border: 1px solid black;
 	margin: 0 3px;
+	color: white;
+}
+
+/* Individual types */
+.normal {
+	background: #807918;
+}
+.fire {
+	background: #d14904;
+}
+.water {
+	background: #6576a2;
+}
+.grass {
+	background: #657e54;
+}
+.electric {
+	background: #726900;
+} /* */
+.ice {
+	background: #2b8381;
+}
+.fighting {
+	background: #c03028;
+}
+.poison {
+	background: #a040a0;
+}
+.ground {
+	background: #9f6d0b;
+}
+.flying {
+	background: #8754f9;
+}
+.psychic {
+	background: #e8174f;
+}
+.bug {
+	background: #787a44;
+}
+.rock {
+	background: #947201;
+}
+.ghost {
+	background: #705898;
+}
+.dark {
+	background: #7038f8;
+}
+.dragon {
+	background: #705848;
+}
+.steel {
+	background: #74758c;
+}
+.fairy {
+	background: #cc4a51;
 }
 
 /* Evolutions */
