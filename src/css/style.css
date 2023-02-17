@@ -61,6 +61,10 @@ header nav a.active:hover {
 }
 
 /* Search buttons */
+form #search-label {
+	font-size: 16pt;
+}
+
 form #search {
 	width: 300px;
 	height: 36px;
@@ -157,14 +161,15 @@ main {
 
 /* Submit Button */
 form #submit {
-	background-color: #4caf50;
+	background-color: #367D38;
 	border: none;
 	color: white;
-	padding: 16px 32px;
+	padding: 14px 28px;
 	text-decoration: none;
 	margin: 4px 2px;
 	cursor: pointer;
 	border-radius: 5px;
+	font-size: 14pt;
 }
 
 /* Next/Previous page */
@@ -179,11 +184,11 @@ form #submit {
 	border: none;
 	color: white;
 	border-radius: 5px;
-	background: red;
+	background: #ee0700;
 	cursor: pointer;
 	width: 80px;
 	position: relative;
-	top: 97px;
+	top: 123px;
 }
 
 #pageButtons #prevPage {
@@ -211,7 +216,7 @@ form #submit {
 #detail-page #add-to-team {
 	width: 100px;
 	height: 40px;
-	background: red;
+	background: #ee0700;
 	color: white;
 	border: none;
 	margin-top: 10px;
@@ -384,7 +389,7 @@ form #submit {
 	text-decoration: none;
 	color: white;
 	display: inline-block;
-	background: red;
+	background: #ee0700;
 	width: 80px;
 	height: 40px;
 	line-height: 40px;
@@ -432,7 +437,7 @@ form #submit {
 #manageButtons input {
 	width: 80px;
 	height: 40px;
-	background: red;
+	background: #ee0700;
 	color: white;
 	border: none;
 	margin: 0 10px 10px 0;

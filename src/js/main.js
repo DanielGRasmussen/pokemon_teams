@@ -33,11 +33,7 @@ async function searchPokemon(search = "", types = [], generation = 0) {
 			pokemon = pokemonGeneration;
 		}
 	}
-
-	// If none of the other conditions are met, basically no other search.
-	// Limit and page are going to get weird here since if the user types the name
-	// of a pokemon at the end they would have to scroll through 500 pages or
-	// whatever
+	
 	if (!types.length > 0 && !(0 < generation && generation < 10)) {
 		pokemon = await services.getAllPokemon();
 	}
