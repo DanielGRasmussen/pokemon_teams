@@ -362,7 +362,47 @@ form #submit {
 }
 
 /* Team */
-#team {
+.slider {
+	max-width: 552px;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	overflow-x: auto;
+	touch-action: none;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+}
+
+.slider::-webkit-scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	width: 0;
+	height: 0;
+}
+
+.team-selector {
+	text-decoration: none;
+	color: white;
+	display: inline-block;
+	background: red;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.slide {
+	max-width: 100vw;
+	flex-shrink: 0;
+	height: 100%;
+}
+
+.slider > div {
+	scroll-snap-align: start;
+}
+
+.team {
 	list-style: none;
 	padding: 0;
 	display: flex;
@@ -371,13 +411,13 @@ form #submit {
 	justify-content: center;
 }
 
-#team li {
+.team li {
 	width: fit-content;
 	margin-right: 10px;
 	cursor: pointer;
 }
 
-#team li img {
+.team li img {
 	width: 70px;
 	padding: 5px;
 	border: 1px solid black;

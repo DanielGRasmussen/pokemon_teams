@@ -126,17 +126,28 @@ export function pokemonDetailTemplate(pokemon, data, chain, highlights, highligh
             </section>`;
 }
 
-export function teamTemplate(team) {
-	let template = "<ul id='team'>"
-	let pokemon;
-	for (let i = 0; i < team.length; i++) {
-		pokemon = team[i];
-		if (pokemon) {
-			template += `<li><img src="${spriteURL}/${pokemon.id}.png" alt="Image of ${pokemon.name}" class="pokemon-${i + 1}"></li>`;
-		} else {
-			template += "<li><img src='/images/white.png' alt='Empty picture' </li>"
+export function teamTemplate(teams) {
+	let template = `<div class="slide-wrap">
+						<div class='slider'>"`;
+	let pokemon, team;
+	for (let i of Object.keys(teams)) {
+		team = teams[i];
+		template += `<div class="slide" id="slide-${i}"><ul class="team">`;
+		for (let i = 0; i < team.length; i++) {
+			pokemon = team[i];
+			if (pokemon) {
+				template += `<li><img src="${spriteURL}/${pokemon.id}.png" alt="Image of ${pokemon.name}" class="pokemon-${i + 1}"></li>`;
+			} else {
+				template += "<li><img src='/images/white.png' alt='Empty picture' </li>"
+			}
 		}
+		template += "</ul></div>";
 	}
-	template += "</ul>";
+	
+	template += `</div>
+				<a href="#slide-1" class="team-selector">Team 1</a>
+				<a href="#slide-2" class="team-selector">Team 2</a>
+				<a href="#slide-3" class="team-selector">Team 3</a>
+			</div>`;
 	return template
 }
