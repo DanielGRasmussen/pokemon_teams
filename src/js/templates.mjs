@@ -34,13 +34,17 @@ export function typeTemplate(data) {
 	return list;
 }
 
-export function movesTemplate(data, highlights) {
+export function movesTemplate(data, highlights, highlight) {
 	const moves = data.moves;
 	let list = "<ul id='moves'>";
+	if (highlight) {
+		list = "<ul id='moves' class='pointer'>";
+	}
+	
 	for (let move of moves) {
 		move = move.move;
 		const name = move.name[0].toUpperCase() + move.name.slice(1);
-		if (highlights.includes(name)) {
+		if (highlights.includes(name.toLowerCase())) {
 			list += `<li class="selected">${name}</li>`;
 		} else {
 			list += `<li>${name}</li>`;
@@ -51,12 +55,12 @@ export function movesTemplate(data, highlights) {
 	return list;
 }
 
-export function pokemonDetailTemplate(pokemon, data, chain, highlights) {
+export function pokemonDetailTemplate(pokemon, data, chain, highlights, highlight) {
 	const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
 	const generation = pokemon.generation.name.split("-")[1].toUpperCase();
 	let flavor_text = "No description available";
 	const types = typeTemplate(data);
-	const moves = movesTemplate(data, highlights);
+	const moves = movesTemplate(data, highlights, highlight);
 	
 	// Get list of pokemon evolution IDs and Names
 	let evolutions = [
@@ -123,12 +127,16 @@ export function pokemonDetailTemplate(pokemon, data, chain, highlights) {
 }
 
 export function teamTemplate(team) {
-	return `<ul id="team">
-				<li><img src="${spriteURL}/${team[0].id}.png" alt="Image of ${team[0].name}" class="pokemon-0"></li>
-				<li><img src="${spriteURL}/${team[1].id}.png" alt="Image of ${team[1].name}" class="pokemon-1"></li>
-				<li><img src="${spriteURL}/${team[2].id}.png" alt="Image of ${team[2].name}" class="pokemon-2"></li>
-				<li><img src="${spriteURL}/${team[3].id}.png" alt="Image of ${team[3].name}" class="pokemon-3"></li>
-				<li><img src="${spriteURL}/${team[4].id}.png" alt="Image of ${team[4].name}" class="pokemon-4"></li>
-				<li><img src="${spriteURL}/${team[5].id}.png" alt="Image of ${team[5].name}" class="pokemon-5"></li>
-			</ul>`
+	let template = "<ul id='team'>"
+	let pokemon;
+	for (let i = 0; i < team.length; i++) {
+		pokemon = team[i];
+		if (pokemon) {
+			template += `<li><img src="${spriteURL}/${pokemon.id}.png" alt="Image of ${pokemon.name}" class="pokemon-${i + 1}"></li>`;
+		} else {
+			template += "<li><img src='/images/white.png' alt='Empty picture' </li>"
+		}
+	}
+	template += "</ul>";
+	return template
 }

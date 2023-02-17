@@ -4,13 +4,66 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title></title>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/favicon/site.webmanifest" />
 		<link rel="stylesheet" href="../css/style.css" />
 		<script src="../js/pokemon-detail.js" type="module"></script>
+		<script src="../js/add-to-team.js" type="module"></script>
 	</head>
 
 	<body>
 		<header id="main-header"></header>
-		<main id="detail-page"></main>
+		<main id="detail-page">
+			<div class="wide">
+				<input type="button" value="Add to team" id="add-to-team" />
+				<div id="team-modal" class="modal">
+					<div class="modal-content">
+						<div class="team-selection">
+							<div class="team-option" id="team1">Team 1</div>
+							<div class="team-option" id="team2">Team 2</div>
+							<div class="team-option" id="team3">Team 3</div>
+						</div>
+						<div class="team-slots hidden">
+							<div class="slot-option 1">
+								Slot 1: <span id="slot1"></span>
+							</div>
+							<div class="slot-option 2">
+								Slot 2: <span id="slot2"></span>
+							</div>
+							<div class="slot-option 3">
+								Slot 3: <span id="slot3"></span>
+							</div>
+							<div class="slot-option 4">
+								Slot 4: <span id="slot4"></span>
+							</div>
+							<div class="slot-option 5">
+								Slot 5: <span id="slot5"></span>
+							</div>
+							<div class="slot-option 6">
+								Slot 6: <span id="slot6"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content"></div>
+		</main>
 		<footer id="main-footer"></footer>
 	</body>
 </html>

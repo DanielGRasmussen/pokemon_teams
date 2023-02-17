@@ -2,7 +2,7 @@ import ExternalServices from "./ExternalServices.mjs";
 import { getIdFromURL, renderWithTemplate } from "./utils.mjs";
 import { pokemonDetailTemplate } from "./templates.mjs";
 
-export async function loadDetails(pokemonId, target, highlights = []) {
+export async function loadDetails(pokemonId, target, highlights = [], highlight = false) {
 	const services = new ExternalServices();
 	
 	const pokemon = await services.getPokemonByName(pokemonId, true);
@@ -11,15 +11,11 @@ export async function loadDetails(pokemonId, target, highlights = []) {
 		getIdFromURL(pokemon.evolution_chain.url)
 	);
 	
-	console.log(pokemon);
-	console.log(chain);
-	console.log(data);
-	
 	const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
 	document.querySelector("title").innerHTML = name + " | Pokémon Teams";
 	
 	renderWithTemplate(
-		pokemonDetailTemplate(pokemon, data, chain, highlights),
+		pokemonDetailTemplate(pokemon, data, chain, highlights, highlight),
 		target,
 		pokemon
 	);

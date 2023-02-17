@@ -1,67 +1,81 @@
-import { loadHeaderFooter, renderWithTemplate } from "./utils.mjs";
+import {
+	getLocalStorage,
+	loadHeaderFooter,
+	renderWithTemplate,
+	setLocalStorage
+} from "./utils.mjs";
 import { teamTemplate } from "./templates.mjs";
 import { loadDetails } from "./PokemonDetails.mjs";
 
-loadHeaderFooter();
-
-const team = [
-	{ name: "10", id: 10, moves: ["Growth", "Bide"] },
-	{ name: "20", id: 20, moves: ["Growth", "Bide"] },
-	{ name: "30", id: 30, moves: ["Growth", "Bide"] },
-	{ name: "40", id: 40, moves: ["Growth", "Bide"] },
-	{ name: "50", id: 50, moves: ["Growth", "Bide"] },
-	{ name: "60", id: 60, moves: ["Growth", "Bide"] }
-];
+loadHeaderFooter("manage");
+const currentTeam = "1";
+let currentSlot = -1;
 
 function loadTeam() {
-	// const team = [
-	// 	{ name: "1", id: 1, moves: ["Growth", "Bide"] },
-	// 	{ name: "2", id: 2, moves: ["Growth", "Bide"] },
-	// 	{ name: "3", id: 3, moves: ["Growth", "Bide"] },
-	// 	{ name: "4", id: 4, moves: ["Growth", "Bide"] },
-	// 	{ name: "5", id: 5, moves: ["Growth", "Bide"] },
-	// 	{ name: "6", id: 6, moves: ["Growth", "Bide"] }
-	// ];
-
-	const teamImages = teamTemplate(team);
+	const teams = getLocalStorage("teams");
+	const teamImages = teamTemplate(teams[currentTeam]);
+	const team = document.getElementById("team");
+	// Clear out main. For some reason .empty() and .innerHTML = "" don't work.
+	if (team) {
+		team.remove();
+	}
+	const details_page = document.getElementById("detail-page");
+	if (details_page) {
+		details_page.innerHTML = "";
+	}
+	// Reset currentSlot to default
+	currentSlot = -1;
 	renderWithTemplate(teamImages, document.querySelector("main"));
+	teamDetails();
 }
 
 function listHighlights() {
 	// Add an event listener to moves
 	document.getElementById("moves").addEventListener("click", (event) => {
 		// Check if user clicked on li
-		if (event.target && event.target.nodeName === "LI") {
-			// TODO check # of selected from localstorage, if 4, don't do this
-			// Highlight the clicked `li` element
-			event.target.classList.toggle("selected");
-
-			const text = event.target.textContent;
-			// TODO add text to movelist in localstorage
+		if (!event.target || event.target.nodeName !== "LI") {
+			return;
 		}
+		const teams = getLocalStorage("teams");
+		const pokemon = teams[currentTeam][currentSlot];
+
+		const text = event.target.textContent.toLowerCase();
+		const index = pokemon.moves.indexOf(text);
+		// Check # of selected from localstorage, if 4, cancel
+		if (index !== -1) {
+			// Unhighlight the clicked `li` element
+			event.target.classList.remove("selected");
+			pokemon.moves.splice(index, 1);
+		} else if (pokemon.moves.length < 4) {
+			// Highlight the clicked `li` element
+			event.target.classList.add("selected");
+			pokemon.moves.push(text);
+		}
+		setLocalStorage("teams", teams);
 	});
 }
 
-loadTeam();
-const details = document.getElementById("detail-page");
+function teamDetails() {
+	// Renders pokemon details on click of the images
+	document.getElementById("team").addEventListener("click", async (event) => {
+		if (event.target.tagName !== "IMG") {
+			return;
+		}
+		const teams = getLocalStorage("teams");
 
-// Renders pokemon details on click of the images
-document.getElementById("team").addEventListener("click", async (event) => {
-	if (event.target.tagName === "IMG") {
-		// const team = [
-		// 	{ name: "1", id: 1, moves: ["Growth", "Bide"] },
-		// 	{ name: "2", id: 2, moves: ["Growth", "Bide"] },
-		// 	{ name: "3", id: 3, moves: ["Growth", "Bide"] },
-		// 	{ name: "4", id: 4, moves: ["Growth", "Bide"] },
-		// 	{ name: "5", id: 5, moves: ["Growth", "Bide"] },
-		// 	{ name: "6", id: 6, moves: ["Growth", "Bide"] }
-		// ];
-
+		// Get classes, then split it if it isn't undefined
+		const classes = event.target.classList[0];
+		if (!classes) {
+			return;
+		}
+		const details = document.getElementById("detail-page");
 		// Clear out the information in case this is the second pokemon they selected
 		details.innerHTML = "";
-		// Get position in list (pokemon-0/1/2/3/4/5), split it, then get the pokemon data
-		const pokemon = team[event.target.classList[0].split("-")[1]];
-		await loadDetails(pokemon.id, details, pokemon.moves);
+
+		currentSlot = classes.split("-")[1] - 1;
+		// Get the pokemon data
+		const pokemon = teams[currentTeam][currentSlot];
+		await loadDetails(pokemon.id, details, pokemon.moves, true);
 		// Add the management buttons
 		renderWithTemplate(
 			`<div id="manageButtons"><input type="button" value="Remove" id="remove"><input type="button" value="Clear" id="clear"></div>`,
@@ -77,8 +91,12 @@ document.getElementById("team").addEventListener("click", async (event) => {
 		// The remove button's functionality
 		document.getElementById("remove").addEventListener("click", (e) => {
 			e.preventDefault();
-			// TODO remove from team
+			teams[currentTeam][currentSlot] = undefined;
+			setLocalStorage("teams", teams);
+			loadTeam();
 		});
 		listHighlights();
-	}
-});
+	});
+}
+
+loadTeam();

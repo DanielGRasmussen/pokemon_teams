@@ -8,7 +8,6 @@ export default class ExternalServices {
 		const result = await axios.get(
 			`${baseURL}/pokemon?limit=2000`
 		);
-		console.log(result)
 		return result.data.results;
 	}
 	

@@ -208,6 +208,16 @@ form #submit {
 	margin: 0;
 }
 
+#detail-page #add-to-team {
+	width: 100px;
+	height: 40px;
+	background: red;
+	color: white;
+	border: none;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
 #pokemon-detail {
 	width: 100%;
 	text-align: center;
@@ -338,6 +348,15 @@ form #submit {
 	margin: 20px 0;
 }
 
+#detail-page #moves li {
+	padding: 10px 0;
+	margin-top: 3px;
+}
+
+#detail-page #moves.pointer li:hover {
+	cursor: pointer;
+}
+
 #detail-page #moves li.selected {
 	background: yellow;
 }
@@ -355,6 +374,7 @@ form #submit {
 #team li {
 	width: fit-content;
 	margin-right: 10px;
+	cursor: pointer;
 }
 
 #team li img {
@@ -386,5 +406,77 @@ footer {
 }
 
 .hidden {
+	display: none !important;
+}
+
+.wide {
+	width: 100%;
+}
+
+/* Add to team */
+.modal {
 	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+	max-width: 500px;
+}
+
+@media only screen and (min-width: 800px) {
+	.modal-content {
+		display: grid;
+		grid-template-columns: 150px 1fr;
+	}
+
+	.team-selection {
+		border-right: 1px solid lightgray;
+	}
+}
+
+.team-selection {
+	height: 228px;
+	display: flex;
+	flex-direction: column;
+}
+
+.team-slots {
+	text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+	.team-slots {
+		text-align: left;
+	}
+
+	.slot-option {
+		padding: 10px 10px 10px 40px;
+	}
+}
+
+.team-option {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.slot-option {
+	padding: 10px 10px 10px 10px;
+	cursor: pointer;
+}
+
+.team-option.selected,
+.slot-option.selected {
+	background-color: #ccc;
 }

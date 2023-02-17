@@ -5,5 +5,5 @@ loadHeaderFooter("");
 
 loadDetails(
 	new URLSearchParams(window.location.search).get("pokemon"),
-	document.querySelector("main")
+	document.querySelector("#content")
 );

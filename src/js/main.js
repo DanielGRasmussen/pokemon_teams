@@ -85,7 +85,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
 	searchPokemon(search, types, generations).then((pokemonList) => {
 		const render = new PokemonRender();
 		const allPokemonLists = separateArray(pokemonList, results);
-		console.log(allPokemonLists);
 
 		pageUpdate(render, allPokemonLists[page]);
 

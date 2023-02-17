@@ -1,6 +1,16 @@
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-	return JSON.parse(localStorage.getItem(key));
+	let ls = JSON.parse(localStorage.getItem(key))
+	if (ls) {
+		return ls
+	}
+	ls = {
+		"1": [null, null, null, null, null, null],
+		"2": [null, null, null, null, null, null],
+		"3": [null, null, null, null, null, null]
+	}
+	setLocalStorage(key, ls);
+	return ls
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
