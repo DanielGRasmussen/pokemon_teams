@@ -33,7 +33,7 @@ async function searchPokemon(search = "", types = [], generation = 0) {
 			pokemon = pokemonGeneration;
 		}
 	}
-	
+
 	if (!types.length > 0 && !(0 < generation && generation < 10)) {
 		pokemon = await services.getAllPokemon();
 	}
